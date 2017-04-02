@@ -10,8 +10,8 @@ include_directories = []
 source_directories = []
 
 alternate_source_directories = [
-	"../src", 
-	"../source", 
+	"../src",
+	"../source",
 	"../sources",
 ]
 
@@ -39,7 +39,7 @@ def all_include_directories(include_dirs, alternate_include_dir, current_dir):
 	# add current directory
 	include_dirs.append(current_dir)
 	return include_dirs
-	
+
 def all_source_directories(source_dirs, alternate_source_dir, current_dir):
 	for alt_dir in alternate_source_dir:
 		source_dirs.append(os.path.join(current_dir, alt_dir))
@@ -77,16 +77,19 @@ def header_files(include_directories, filename, headers_ext):
 				files_found.append(_filename)
 	return files_found
 
+def is_open(filename):
+        pass
+
 if __name__ == '__main__':
 	# get full file path
 	file_path = vim.eval("expand('%:p')")
 	directory, filename, extension = file_info(file_path)
-	
-	source_directories = all_source_directories(source_directories, 
+
+	source_directories = all_source_directories(source_directories,
 				alternate_source_directories,
 				directory
 				)
-	include_directories = all_include_directories(include_directories, 
+	include_directories = all_include_directories(include_directories,
 				alternate_include_directories,
 				directory
 				)
@@ -96,7 +99,7 @@ if __name__ == '__main__':
 
 	if is_header(extension, headers_extension):
 		files_found = source_files(source_directories, filename, sources_extension)
-	
+
 	if is_source(extension, sources_extension):
 		files_found = header_files(include_directories, filename, headers_extension)
 
