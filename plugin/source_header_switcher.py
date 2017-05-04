@@ -110,6 +110,7 @@ if __name__ == '__main__':
     buf_path = file_buffer(files_found[0])
     if buf_path:
         # goto buffer
+        #TODO check if the tab is available
         vim.command(":tabnext %s" %buf_path.number)
 
     # open the file
